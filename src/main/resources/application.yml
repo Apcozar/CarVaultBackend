@@ -1,0 +1,32 @@
+graphql:
+  servlet:
+    mapping: /graphql
+myprops:
+  artifactId: '@project.artifactId@'
+  version: '@project.version@'
+  h2:
+    version: '@h2.version@'
+spring:
+  datasource:
+    url: jdbc:mysql://carvault.cwlvkqteisdu.us-east-1.rds.amazonaws.com:3306/carVault?jdbcCompliantTruncation=false
+    username: root
+    password: carVault
+    #driver-class-name: com.mysql.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create
+
+
+voyager:
+  mapping: /voyager
+
+logging:
+  level:
+    org.hibernate.SQL: WARN
+decorator:
+  datasource:
+    p6spy: # logging SQL after binding parameters
+      enable-logging: true
+      multiline: true
+      logging: sysout
+      log-format: '%(sql)'

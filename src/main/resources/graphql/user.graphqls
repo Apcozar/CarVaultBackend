@@ -1,0 +1,21 @@
+type User{
+    id: ID
+    username: String
+    firstname: String
+    surname: String
+    email: String
+    phone: String
+    cars: [Car]
+    profilePicture: String
+}
+
+type Query {
+    getUser(id: ID!): User
+    getUserByUsername(username: String): User
+    getUserByEmail(email: String): User
+}
+
+type Mutation {
+    newUser(username: String!, email: String!,firstname: String, surname: String,  phone: String!, profilePicture: String): User
+    updateUser(userId: String!, firstname: String, surname: String,  phone: String, profilePicture: String): User
+}

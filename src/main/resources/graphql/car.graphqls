@@ -1,0 +1,58 @@
+type Car {
+    id: ID
+    brand: String
+    model: String
+    vin: String
+    description: String
+    kilometers: Int
+    year: Int
+    address: String
+    manufacturer: String
+    origin: String
+    fuel: String
+    color: String
+    owner: User
+    documents: [CarDocument]
+    images:[CarImage]
+    transactions: [CarTransaction]
+}
+
+type CarTransaction {
+    hash: String
+    date: String
+}
+
+type CarDocument{
+    id:ID
+    content: String
+    documentType: String
+    documentName: String
+    date: String
+}
+
+input CarDocumentInput{
+    content: String
+    documentType: String
+    documentName: String
+    date: String
+}
+
+type CarImage{
+    id:ID
+    content: String
+}
+
+
+extend type Mutation {
+    transferCar(carId: ID!, userId: ID!): Car
+    newCar(userId: ID!, vin: String, brand: String, model: String, description: String, kilometers: Int,horsepower :Int, year: Int, address: String, manufacturer: String, origin: String, fuel: String, color: String ): Car
+    updateCar(carId: ID!, vin: String, brand: String, model: String, description: String, kilometers: Int,horsepower :Int, year: Int, address: String, manufacturer: String, origin: String, fuel: String, color: String, images: [String]): Car
+    updateCarDocuments(carId: ID!, documents:[CarDocumentInput]!): Car
+    deleteCar(carId: ID!):ID
+    deleteCarImage(imageId: ID!):ID
+}
+
+extend type Query{
+    getCarById(id: ID!):Car
+    getCarByVin(vin: String!):Car
+}
